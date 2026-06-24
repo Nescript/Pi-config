@@ -1,0 +1,13 @@
+# ─── Device-local state (never sync) ───────────────────────────────────────────
+sessions/
+npm/
+git/
+auth.json
+trust.json
+
+# ─── OS junk ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
