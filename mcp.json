@@ -1,10 +1,7 @@
 {
   "mcpServers": {
     "cardputer": {
-      "command": "${HOME}/cardputer-custom-firmware/mcp/.venv/bin/python",
-      "args": [
-        "${HOME}/cardputer-custom-firmware/mcp/server.py"
-      ],
+      "command": "/home/nesc/cardputer-custom-firmware/mcp/start.sh",
       "description": "Cardputer pocket pager — notify, ask, confirm, show, device_status via BLE",
       "lifecycle": "lazy"
     }
