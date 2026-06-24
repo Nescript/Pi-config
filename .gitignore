@@ -5,6 +5,11 @@ git/
 auth.json
 trust.json
 
+# ─── Machine-local MCP & peripheral config ────────────────────────────────────
+mcp.json
+CARDPUTER.md
+mcp-cache.json
+
 # ─── OS junk ──────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db

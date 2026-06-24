@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "cardputer": {
-      "command": "/home/nesc/cardputer-custom-firmware/mcp/start.sh",
-      "description": "Cardputer pocket pager — notify, ask, confirm, show, device_status via BLE",
-      "lifecycle": "lazy"
-    }
-  }
-}
