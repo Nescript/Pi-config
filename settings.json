@@ -1,15 +1,17 @@
 {
-  "lastChangelogVersion": "0.80.2",
+  "lastChangelogVersion": "0.82.1",
   "theme": "dark",
-  "defaultProvider": "deepseek",
-  "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "k3",
+  "defaultThinkingLevel": "low",
   "packages": [
     "npm:pi-web-access",
     "npm:pi-mcp-adapter",
     "npm:@juicesharp/rpiv-ask-user-question",
     "git:github.com/mattpocock/skills@main",
     "npm:@hypabolic/pi-hypa",
-    "npm:context-mode"
+    "npm:context-mode",
+    "npm:statusline-pi",
+    "npm:pi-markdown-preview"
   ]
 }
