@@ -1,7 +1,20 @@
 # Pi 新平台引导（BOOTSTRAP）
 
 > **本文档的读者是新平台上的 agent。** 按照「执行清单」逐步操作，即可完整复现这套 Pi 环境。
-> 所有配置文件内容已内嵌在本文档中；个人 skill 的文件内容在本仓库 `skills/` 目录下。
+> 所有配置文件内容已内嵌在本文档中。
+
+## ⚠️ 维护规则（所有平台上的 agent 必须遵守）
+
+**本文档是这套环境的唯一事实来源。** 每次发生以下变更时，必须在同一轮工作中同步更新本文档，并提交推送到 Git 仓库：
+
+| 变更 | 必须更新 |
+|---|---|
+| 安装/卸载插件 | 「插件安装」命令列表、用途表、内嵌 `settings.json` 的 `packages` 数组 |
+| 新增/删除个人 skill | 「Skill 清单」中的个人 skill 表（skill 文件放入 `~/.pi/agent/skills/`） |
+| 修改任何配置 | 「配置文件」一节对应的内嵌内容 |
+| 任何上述变更后 | 运行 `node ~/.pi/agent/scripts/audit-skills.mjs` 验证，然后 `git add` 本文档及相关文件、commit、push |
+
+**文档与实际环境不一致视为 bug，发现时必须立即修正文档。**
 
 ## 环境前提
 
@@ -11,11 +24,12 @@
 
 ## 执行清单（agent 按顺序执行）
 
-- [ ] 1. 将本仓库克隆/放置到 `~/.pi/agent`（个人 skill 随之就位）
+- [ ] 1. 将本仓库克隆/放置到 `~/.pi/agent`
 - [ ] 2. 写入下方「配置文件」一节中的各文件
 - [ ] 3. 逐条执行「插件安装」中的 `pi install` 命令
 - [ ] 4. 运行验证：`node ~/.pi/agent/scripts/audit-skills.mjs`，确认 `Name collisions: 0`
-- [ ] 5. 提醒用户手动完成「需要人工处理」一节
+- [ ] 5. 阅读并遵守上方「维护规则」
+- [ ] 6. 提醒用户手动完成「需要人工处理」一节
 
 ## 插件安装（12 个包）
 
@@ -119,26 +133,15 @@ pi install npm:pi-rich-renderer
 {"workflow":"auto-summary"}
 ```
 
-## Skill 清单（共 43 个，两个来源）
+## Skill 清单（共 35 个，当前仅一个来源）
 
-### 来源一：本仓库 `skills/`（8 个个人 skill）
+### 个人 skill（本仓库 `skills/`）
 
-克隆本仓库到 `~/.pi/agent` 后自动就位，无需额外操作。
+**当前无个人 skill。** 新增个人 skill 时：将 skill 目录放入 `~/.pi/agent/skills/`，并按「维护规则」在此补充名称和用途。
 
-| Skill | 用途 |
-|---|---|
-| `batch-grill-me` | 一次性抛出所有关键问题的多轮访谈 |
-| `design-an-interface` | 为模块生成多种截然不同的接口设计 |
-| `edit-article` | 文章编辑：重构结构、改善表达 |
-| `obsidian-vault` | Obsidian 笔记库的搜索、创建与管理 |
-| `qa` | 对话式 QA，边聊边建 GitHub issue |
-| `request-refactor-plan` | 通过访谈生成小步重构计划并建 issue |
-| `ubiquitous-language` | 从对话提取 DDD 统一语言术语表 |
-| `writing-great-skills` | 编写高质量 skill 的参考规范 |
+### 外部包：`git:github.com/mattpocock/skills@main`（35 个）
 
-### 来源二：`git:github.com/mattpocock/skills@main` 包（35 个）
-
-由第 3 步的 `pi install` 自动安装到 `~/.pi/agent/git/`，**不要手动复制到任何 skills 目录**。
+由执行清单第 3 步的 `pi install` 自动安装到 `~/.pi/agent/git/`，**不要手动复制到任何 skills 目录**。
 
 **规则：`~/.agents/skills` 必须保持为空**，同名 skill 多来源会导致 collision。
 
@@ -151,6 +154,6 @@ pi install npm:pi-rich-renderer
 ## 验证
 
 ```bash
-# 应输出 Name collisions: 0，共 43 个 skill
+# 应输出 Name collisions: 0，共 35 个 skill
 node ~/.pi/agent/scripts/audit-skills.mjs
 ```
