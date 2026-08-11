@@ -19,8 +19,7 @@
 - Prefer `edit` over `write` for incremental changes
 - Respect project-level `AGENTS.md` / `CLAUDE.md` if present
 
-## Machine-Specific Add-ons
+## Config Sync
+- 新增/删除 skill、安装/卸载插件、修改 Pi 配置后，必须同步更新 `~/.pi/agent/BOOTSTRAP.md` 对应章节，运行 `node ~/.pi/agent/scripts/audit-skills.mjs` 验证，并提交推送 Pi-config 仓库
+- BOOTSTRAP.md 与本机环境不一致视为 bug，发现时立即修正
 
-如果 `~/.pi/agent/CARDPUTER.md` 存在，则表示当前机器配置了 Cardputer
-（BLE 口袋寻呼设备）。请读取该文件并遵循其中的指令——包括设备交互规则
-和上述 Workflow 的补充行为。
