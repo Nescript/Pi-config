@@ -7,6 +7,8 @@
 
 **本文档是这套环境的唯一事实来源。** 每次发生以下变更时，必须在同一轮工作中同步更新本文档，并提交推送到 Git 仓库：
 
+> **引导 agent 的额外义务**：完成新平台配置后，必须确认下方规则已写入 `~/.pi/agent/AGENTS.md`（全局指令，每次会话都会加载）。只有这样，日常会话中的 agent 才会记得持续维护本文档。本文档内嵌的 `AGENTS.md` 内容已包含该规则；若目标机器已有自定义 `AGENTS.md`，则**追加「Config Sync」一节，不要覆盖原有内容**。
+
 | 变更 | 必须更新 |
 |---|---|
 | 安装/卸载插件 | 「插件安装」命令列表、用途表、内嵌 `settings.json` 的 `packages` 数组 |
@@ -28,8 +30,9 @@
 - [ ] 2. 写入下方「配置文件」一节中的各文件
 - [ ] 3. 逐条执行「插件安装」中的 `pi install` 命令
 - [ ] 4. 运行验证：`node ~/.pi/agent/scripts/audit-skills.mjs`，确认 `Name collisions: 0`
-- [ ] 5. 阅读并遵守上方「维护规则」
-- [ ] 6. 提醒用户手动完成「需要人工处理」一节
+- [ ] 5. 确认「维护规则」已写入 `~/.pi/agent/AGENTS.md`（内嵌模板已包含；若该文件已有自定义内容则追加而非覆盖）
+- [ ] 6. 阅读并遵守上方「维护规则」
+- [ ] 7. 提醒用户手动完成「需要人工处理」一节
 
 ## 插件安装（12 个包）
 
@@ -125,6 +128,10 @@ pi install npm:pi-rich-renderer
 ## Workflow
 - Prefer `edit` over `write` for incremental changes
 - Respect project-level `AGENTS.md` / `CLAUDE.md` if present
+
+## Config Sync
+- 新增/删除 skill、安装/卸载插件、修改 Pi 配置后，必须同步更新 `~/.pi/agent/BOOTSTRAP.md` 对应章节，运行 `node ~/.pi/agent/scripts/audit-skills.mjs` 验证，并提交推送 Pi-config 仓库
+- BOOTSTRAP.md 与本机环境不一致视为 bug，发现时立即修正
 ```
 
 ### `~/.pi/web-search.json`（注意在 `~/.pi/`，不是 `~/.pi/agent/`）
