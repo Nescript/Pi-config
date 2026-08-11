@@ -38,6 +38,30 @@
 
 安装方式：`pi install npm:<包名>`
 
+## Skill 同步策略
+
+原则：**Git 是唯一来源，本机目录只是加载位置或安装缓存。**
+
+| Skill 类型 | 唯一来源 | 本机加载位置 | 同步方式 |
+|---|---|---|---|
+| 个人自定义 skill | `Nescript/Pi-config` 仓库 | `~/.pi/agent/skills/` | 提交并推送该仓库 |
+| Matt Pocock 方法论 skill | `github.com/mattpocock/skills` | `~/.pi/agent/git/` | `settings.json` 里的 `git:github.com/mattpocock/skills@main` |
+| npm 包附带的 skill | 对应 npm 包 | `~/.pi/agent/npm/` | `settings.json` 里的 `packages` |
+
+规则：
+
+1. 个人 skill 只放在 `~/.pi/agent/skills/`，不要复制到 `~/.agents/skills/`。
+2. 外部 Git 包里的 skill 只通过 `settings.json` 声明，不复制到个人 skill 目录。
+3. `~/.agents/skills/` 保持为空；它是其他 agent harness 的兼容入口，不是本配置的同步来源。
+4. `~/.pi/agent/git/`、`~/.pi/agent/npm/`、`sessions/`、`auth.json`、`trust.json` 都是本机状态，已通过 `.gitignore` 排除。
+5. 多平台迁移后运行审计：
+
+```bash
+node ~/.pi/agent/scripts/audit-skills.mjs
+```
+
+如果存在同名 skill，该脚本会列出所有来源并以非零状态退出。
+
 ## 网络搜索 curator 设置
 
 文件：`~/.pi/web-search.json`
