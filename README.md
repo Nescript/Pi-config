@@ -62,6 +62,13 @@ node ~/.pi/agent/scripts/audit-skills.mjs
 
 如果存在同名 skill，该脚本会列出所有来源并以非零状态退出。
 
+## 跨平台配置边界
+
+- `settings.json` 只提交跨平台一致的配置；不要把 OS 专属路径放进共享配置。
+- Windows 的 Git Bash 默认路径 `C:\Program Files\Git\bin\bash.exe` 会被 Pi 自动检测，因此通常不需要提交 `shellPath`。
+- 如果某台机器确实需要自定义 `shellPath`，把它保留为本机未提交差异，不要推送。
+- `auth.json`、`trust.json`、`sessions/`、`models-store.json`、`npm/`、`git/` 永远不同步。
+
 ## 网络搜索 curator 设置
 
 文件：`~/.pi/web-search.json`
