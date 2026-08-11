@@ -34,7 +34,7 @@
 - [ ] 6. 阅读并遵守上方「维护规则」
 - [ ] 7. 提醒用户手动完成「需要人工处理」一节
 
-## 插件安装（12 个包）
+## 插件安装（11 个包）
 
 ```bash
 pi install npm:pi-web-access
@@ -48,7 +48,6 @@ pi install npm:pi-markdown-preview
 pi install npm:@cortexkit/pi-antigravity-auth
 pi install npm:pi-patty-bg-tasks
 pi install npm:pi-render-btw
-pi install npm:pi-rich-renderer
 ```
 
 | 包 | 用途 |
@@ -64,7 +63,6 @@ pi install npm:pi-rich-renderer
 | `@cortexkit/pi-antigravity-auth` | Antigravity 认证 |
 | `pi-patty-bg-tasks` | 后台任务 |
 | `pi-render-btw` | 渲染增强 |
-| `pi-rich-renderer` | 富渲染 |
 
 ## 配置文件
 
@@ -91,8 +89,7 @@ pi install npm:pi-rich-renderer
     "npm:pi-markdown-preview",
     "npm:@cortexkit/pi-antigravity-auth",
     "npm:pi-patty-bg-tasks",
-    "npm:pi-render-btw",
-    "npm:pi-rich-renderer"
+    "npm:pi-render-btw"
   ]
 }
 ```
