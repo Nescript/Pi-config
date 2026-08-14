@@ -23,7 +23,8 @@
     "git:github.com/DietrichGebert/ponytail",
     "npm:pi-cc-extensions",
     "npm:@narumitw/pi-usage",
-    "npm:pi-cache-optimizer"
+    "npm:pi-cache-optimizer",
+    "npm:@ff-labs/pi-fff"
   ],
   "hideThinkingBlock": true,
   "tuiMode": "regular",
