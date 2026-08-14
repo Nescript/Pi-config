@@ -86,6 +86,7 @@ pi install npm:@ff-labs/pi-fff
 
 ### `~/.pi/agent/settings.json`
 
+> **此文件已移出 Git 同步**（两台机器的 `shellPath`、已装插件进度等会发散）。本节内嵌内容是唯一事实来源；插件增删时更新下方 `packages` 数组，各自机器上的真实文件由 `pi install` 自动维护。
 > 注意：这里**故意不包含 `shellPath`**——它是 Windows 专属路径。
 > Windows 上 Pi 会自动检测 Git Bash；只有自动检测失败时才在本机手动补上。
 
@@ -115,8 +116,8 @@ pi install npm:@ff-labs/pi-fff
     "git:github.com/DietrichGebert/ponytail",
     "npm:pi-cc-extensions",
     "npm:@narumitw/pi-usage",
-    "npm:pi-cache-optimizer",
-    "npm:@ff-labs/pi-fff"
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-cache-optimizer"
   ],
   "hideThinkingBlock": true,
   "tuiMode": "regular"

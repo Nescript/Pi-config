@@ -17,3 +17,6 @@ Thumbs.db
 *~
 
 models-store.json
+
+# ─── Per-device mirror (two machines diverge; BOOTSTRAP.md embedded copy is canonical) ───
+settings.json
