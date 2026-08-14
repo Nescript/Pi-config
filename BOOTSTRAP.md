@@ -168,6 +168,8 @@ pi install npm:@narumitw/pi-usage
 |---|---|
 | `find-skills` | 发现并按需安装新的 agent skill |
 
+> 本机实际做法：`find-skills` 真实文件放在 `~/.agents/skills/find-skills`，`~/.pi/agent/skills/find-skills` 是指向它的符号链接（多个 agent 工具共享同一份）。新平台上直接从本仓库 `skills/` 复制到 `~/.pi/agent/skills/` 即可。
+
 新增个人 skill 时：将 skill 目录放入 `~/.pi/agent/skills/` 并同步到本仓库 `skills/`，按「维护规则」在此补充名称和用途。
 
 ### 外部包（41 个，由 `pi install` 自动安装）
@@ -177,7 +179,7 @@ pi install npm:@narumitw/pi-usage
 
 由执行清单第 3 步的 `pi install` 自动安装到 `~/.pi/agent/git/`，**不要手动复制到任何 skills 目录**。
 
-**规则：`~/.agents/skills` 必须保持为空**，同名 skill 多来源会导致 collision。
+**规则：`~/.agents/skills` 中除上述共享的 `find-skills` 外不要放其他 skill**，同名 skill 多来源会导致 collision。
 
 ## 需要人工处理（agent 不可代劳）
 
