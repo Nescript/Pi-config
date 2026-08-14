@@ -87,8 +87,8 @@ pi install npm:@narumitw/pi-usage
 
 ```json
 {
-  "lastChangelogVersion": "0.84.1",
-  "theme": "dark",
+  "lastChangelogVersion": "0.84.2",
+  "theme": "cc-dark",
   "defaultProvider": "kimi-coding",
   "defaultModel": "k3",
   "defaultThinkingLevel": "high",
@@ -111,7 +111,9 @@ pi install npm:@narumitw/pi-usage
     "git:github.com/DietrichGebert/ponytail",
     "npm:pi-cc-extensions",
     "npm:@narumitw/pi-usage"
-  ]
+  ],
+  "hideThinkingBlock": true,
+  "tuiMode": "regular"
 }
 ```
 
@@ -158,13 +160,20 @@ pi install npm:@narumitw/pi-usage
 {"workflow":"auto-summary"}
 ```
 
-## Skill 清单（共 35 个，当前仅一个来源）
+## Skill 清单（共 42 个）
 
 ### 个人 skill（本仓库 `skills/`）
 
-**当前无个人 skill。** 新增个人 skill 时：将 skill 目录放入 `~/.pi/agent/skills/`，并按「维护规则」在此补充名称和用途。
+| Skill | 用途 |
+|---|---|
+| `find-skills` | 发现并按需安装新的 agent skill |
 
-### 外部包：`git:github.com/mattpocock/skills@main`（35 个）
+新增个人 skill 时：将 skill 目录放入 `~/.pi/agent/skills/` 并同步到本仓库 `skills/`，按「维护规则」在此补充名称和用途。
+
+### 外部包（41 个，由 `pi install` 自动安装）
+
+- `git:github.com/mattpocock/skills@main`（35 个）
+- `git:github.com/DietrichGebert/ponytail`（6 个）
 
 由执行清单第 3 步的 `pi install` 自动安装到 `~/.pi/agent/git/`，**不要手动复制到任何 skills 目录**。
 
@@ -179,6 +188,6 @@ pi install npm:@narumitw/pi-usage
 ## 验证
 
 ```bash
-# 应输出 Name collisions: 0，共 35 个 skill
+# 应输出 Name collisions: 0，共 42 个 skill
 node ~/.pi/agent/scripts/audit-skills.mjs
 ```

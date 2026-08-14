@@ -1,9 +1,9 @@
 {
-  "lastChangelogVersion": "0.82.1",
-  "theme": "dark",
+  "lastChangelogVersion": "0.84.2",
+  "theme": "cc-dark",
   "defaultProvider": "kimi-coding",
   "defaultModel": "k3",
-  "defaultThinkingLevel": "low",
+  "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
     "npm:pi-mcp-adapter",
@@ -12,6 +12,18 @@
     "npm:@hypabolic/pi-hypa",
     "npm:context-mode",
     "npm:statusline-pi",
-    "npm:pi-markdown-preview"
-  ]
+    "npm:pi-markdown-preview",
+    "npm:@cortexkit/pi-antigravity-auth",
+    "npm:pi-render-btw",
+    "npm:pi-subagents",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:pi-background-tasks",
+    "npm:@schovest/pi-sudo-helper",
+    "npm:@d3ara1n/pi-session-namer",
+    "git:github.com/DietrichGebert/ponytail",
+    "npm:pi-cc-extensions",
+    "npm:@narumitw/pi-usage"
+  ],
+  "hideThinkingBlock": true,
+  "tuiMode": "regular"
 }
