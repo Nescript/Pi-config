@@ -22,8 +22,10 @@
     "npm:@d3ara1n/pi-session-namer",
     "git:github.com/DietrichGebert/ponytail",
     "npm:pi-cc-extensions",
-    "npm:@narumitw/pi-usage"
+    "npm:@narumitw/pi-usage",
+    "npm:pi-cache-optimizer"
   ],
   "hideThinkingBlock": true,
-  "tuiMode": "regular"
+  "tuiMode": "regular",
+  "shellPath": "C:\\Program Files\\Git\\bin\\bash.exe"
 }

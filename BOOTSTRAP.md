@@ -34,7 +34,7 @@
 - [ ] 6. 阅读并遵守上方「维护规则」
 - [ ] 7. 提醒用户手动完成「需要人工处理」一节
 
-## 插件安装（18 个包）
+## 插件安装（19 个包）
 
 ```bash
 pi install npm:pi-web-access
@@ -55,6 +55,7 @@ pi install npm:@d3ara1n/pi-session-namer
 pi install git:github.com/DietrichGebert/ponytail
 pi install npm:pi-cc-extensions
 pi install npm:@narumitw/pi-usage
+pi install npm:pi-cache-optimizer
 ```
 
 | 包 | 用途 |
@@ -77,6 +78,7 @@ pi install npm:@narumitw/pi-usage
 | `git:github.com/DietrichGebert/ponytail` | 优先复用、避免无谓编码的工作流与 skill |
 | `pi-cc-extensions` | Claude Code 风格 TUI、上下文检查与会话引用 |
 | `@narumitw/pi-usage` | 查看 Codex、Copilot、OpenRouter 用量 |
+| `pi-cache-optimizer` | 提高 prompt 缓存命中率（稳定 prompt、cache key 兼容） |
 
 ## 配置文件
 
@@ -110,7 +112,8 @@ pi install npm:@narumitw/pi-usage
     "npm:@d3ara1n/pi-session-namer",
     "git:github.com/DietrichGebert/ponytail",
     "npm:pi-cc-extensions",
-    "npm:@narumitw/pi-usage"
+    "npm:@narumitw/pi-usage",
+    "npm:pi-cache-optimizer"
   ],
   "hideThinkingBlock": true,
   "tuiMode": "regular"
