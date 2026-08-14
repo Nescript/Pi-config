@@ -37,8 +37,18 @@
 | `git:github.com/mattpocock/skills` | 方法论技能包（TDD、debugging、design 等） |
 | `statusline-pi` | 状态栏：git、花费、CPU/内存、上下文占用 |
 | `pi-markdown-preview` | Markdown 预览 |
+| `@cortexkit/pi-antigravity-auth` | Antigravity 认证 |
+| `pi-render-btw` | 渲染增强 |
+| `pi-subagents` | 子代理编排 |
+| `@juicesharp/rpiv-todo` | 任务清单 |
+| `pi-background-tasks` | 后台任务 |
+| `@schovest/pi-sudo-helper` | sudo 命令密码辅助 |
+| `@d3ara1n/pi-session-namer` | 自动生成会话名称 |
+| `git:github.com/DietrichGebert/ponytail` | 优先复用、避免无谓编码的工作流与 skill |
+| `pi-cc-extensions` | Claude Code 风格 TUI、上下文检查与会话引用 |
+| `@narumitw/pi-usage` | 查看 Codex、Copilot、OpenRouter 用量 |
 
-安装方式：`pi install npm:<包名>`
+安装方式：`pi install npm:<包名>`（Ponytail 使用 `pi install git:...`）
 
 ## Skill 同步策略
 

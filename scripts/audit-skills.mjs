@@ -25,7 +25,14 @@ const roots = [
   },
 ];
 
-const ignoredDirs = new Set(['.git', 'node_modules', 'dist', 'build']);
+const ignoredDirs = new Set([
+  '.git',
+  'node_modules',
+  'dist',
+  'build',
+  // Compatibility copies for other agent hosts are not Pi resources.
+  '.openclaw',
+]);
 const args = new Set(process.argv.slice(2));
 const asJson = args.has('--json');
 

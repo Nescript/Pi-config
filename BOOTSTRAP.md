@@ -34,7 +34,7 @@
 - [ ] 6. 阅读并遵守上方「维护规则」
 - [ ] 7. 提醒用户手动完成「需要人工处理」一节
 
-## 插件安装（11 个包）
+## 插件安装（18 个包）
 
 ```bash
 pi install npm:pi-web-access
@@ -46,8 +46,15 @@ pi install npm:context-mode
 pi install npm:statusline-pi
 pi install npm:pi-markdown-preview
 pi install npm:@cortexkit/pi-antigravity-auth
-pi install npm:pi-patty-bg-tasks
 pi install npm:pi-render-btw
+pi install npm:pi-subagents
+pi install npm:@juicesharp/rpiv-todo
+pi install npm:pi-background-tasks
+pi install npm:@schovest/pi-sudo-helper
+pi install npm:@d3ara1n/pi-session-namer
+pi install git:github.com/DietrichGebert/ponytail
+pi install npm:pi-cc-extensions
+pi install npm:@narumitw/pi-usage
 ```
 
 | 包 | 用途 |
@@ -61,8 +68,15 @@ pi install npm:pi-render-btw
 | `statusline-pi` | 状态栏 |
 | `pi-markdown-preview` | Markdown 预览 |
 | `@cortexkit/pi-antigravity-auth` | Antigravity 认证 |
-| `pi-patty-bg-tasks` | 后台任务 |
 | `pi-render-btw` | 渲染增强 |
+| `pi-subagents` | 子代理编排 |
+| `@juicesharp/rpiv-todo` | 任务清单 |
+| `pi-background-tasks` | 后台任务 |
+| `@schovest/pi-sudo-helper` | sudo 命令密码辅助 |
+| `@d3ara1n/pi-session-namer` | 自动生成会话名称 |
+| `git:github.com/DietrichGebert/ponytail` | 优先复用、避免无谓编码的工作流与 skill |
+| `pi-cc-extensions` | Claude Code 风格 TUI、上下文检查与会话引用 |
+| `@narumitw/pi-usage` | 查看 Codex、Copilot、OpenRouter 用量 |
 
 ## 配置文件
 
@@ -88,8 +102,15 @@ pi install npm:pi-render-btw
     "npm:statusline-pi",
     "npm:pi-markdown-preview",
     "npm:@cortexkit/pi-antigravity-auth",
-    "npm:pi-patty-bg-tasks",
-    "npm:pi-render-btw"
+    "npm:pi-render-btw",
+    "npm:pi-subagents",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:pi-background-tasks",
+    "npm:@schovest/pi-sudo-helper",
+    "npm:@d3ara1n/pi-session-namer",
+    "git:github.com/DietrichGebert/ponytail",
+    "npm:pi-cc-extensions",
+    "npm:@narumitw/pi-usage"
   ]
 }
 ```
