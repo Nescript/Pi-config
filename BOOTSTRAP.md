@@ -34,7 +34,7 @@
 - [ ] 6. 阅读并遵守上方「维护规则」
 - [ ] 7. 提醒用户手动完成「需要人工处理」一节
 
-## 插件安装（20 个包）
+## 插件安装（19 个包）
 
 ```bash
 pi install npm:pi-web-access
@@ -52,7 +52,6 @@ pi install npm:@juicesharp/rpiv-todo
 pi install npm:pi-background-tasks
 pi install npm:@schovest/pi-sudo-helper
 pi install npm:@d3ara1n/pi-session-namer
-pi install git:github.com/DietrichGebert/ponytail
 pi install npm:pi-cc-extensions
 pi install npm:@narumitw/pi-usage
 pi install npm:pi-cache-optimizer
@@ -76,7 +75,6 @@ pi install npm:@ff-labs/pi-fff
 | `pi-background-tasks` | 后台任务 |
 | `@schovest/pi-sudo-helper` | sudo 命令密码辅助 |
 | `@d3ara1n/pi-session-namer` | 自动生成会话名称 |
-| `git:github.com/DietrichGebert/ponytail` | 优先复用、避免无谓编码的工作流与 skill |
 | `pi-cc-extensions` | Claude Code 风格 TUI、上下文检查与会话引用 |
 | `@narumitw/pi-usage` | 查看 Codex、Copilot、OpenRouter 用量 |
 | `pi-cache-optimizer` | 提高 prompt 缓存命中率（稳定 prompt、cache key 兼容） |
@@ -113,7 +111,6 @@ pi install npm:@ff-labs/pi-fff
     "npm:pi-background-tasks",
     "npm:@schovest/pi-sudo-helper",
     "npm:@d3ara1n/pi-session-namer",
-    "git:github.com/DietrichGebert/ponytail",
     "npm:pi-cc-extensions",
     "npm:@narumitw/pi-usage",
     "npm:@ff-labs/pi-fff",
@@ -167,7 +164,7 @@ pi install npm:@ff-labs/pi-fff
 {"workflow":"auto-summary"}
 ```
 
-## Skill 清单（共 42 个）
+## Skill 清单（共 36 个）
 
 ### 个人 skill（本仓库 `skills/`）
 
@@ -179,10 +176,9 @@ pi install npm:@ff-labs/pi-fff
 
 新增个人 skill 时：将 skill 目录放入 `~/.pi/agent/skills/` 并同步到本仓库 `skills/`，按「维护规则」在此补充名称和用途。
 
-### 外部包（41 个，由 `pi install` 自动安装）
+### 外部包（35 个，由 `pi install` 自动安装）
 
 - `git:github.com/mattpocock/skills@main`（35 个）
-- `git:github.com/DietrichGebert/ponytail`（6 个）
 
 由执行清单第 3 步的 `pi install` 自动安装到 `~/.pi/agent/git/`，**不要手动复制到任何 skills 目录**。
 
@@ -197,6 +193,6 @@ pi install npm:@ff-labs/pi-fff
 ## 验证
 
 ```bash
-# 应输出 Name collisions: 0，共 42 个 skill
+# 应输出 Name collisions: 0，共 36 个 skill
 node ~/.pi/agent/scripts/audit-skills.mjs
 ```
