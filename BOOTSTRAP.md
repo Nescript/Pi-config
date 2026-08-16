@@ -29,10 +29,11 @@
 - [ ] 1. 将本仓库克隆/放置到 `~/.pi/agent`
 - [ ] 2. 写入下方「配置文件」一节中的各文件
 - [ ] 3. 逐条执行「插件安装」中的 `pi install` 命令
-- [ ] 4. 运行验证：`node ~/.pi/agent/scripts/audit-skills.mjs`，确认 `Name collisions: 0`
-- [ ] 5. 确认「维护规则」已写入 `~/.pi/agent/AGENTS.md`（内嵌模板已包含；若该文件已有自定义内容则追加而非覆盖）
-- [ ] 6. 阅读并遵守上方「维护规则」
-- [ ] 7. 提醒用户手动完成「需要人工处理」一节
+- [ ] 4. 确认 `bin/hypa` shim 已就位（本仓库自带，随克隆到位；详见「`bin/hypa` shim」一节），否则 pi-hypa 改写后的 bash 命令会报 `hypa: command not found`
+- [ ] 5. 运行验证：`node ~/.pi/agent/scripts/audit-skills.mjs`，确认 `Name collisions: 0`
+- [ ] 6. 确认「维护规则」已写入 `~/.pi/agent/AGENTS.md`（内嵌模板已包含；若该文件已有自定义内容则追加而非覆盖）
+- [ ] 7. 阅读并遵守上方「维护规则」
+- [ ] 8. 提醒用户手动完成「需要人工处理」一节
 
 ## 插件安装（19 个包）
 
@@ -79,6 +80,14 @@ pi install npm:@ff-labs/pi-fff
 | `@narumitw/pi-usage` | 查看 Codex、Copilot、OpenRouter 用量 |
 | `pi-cache-optimizer` | 提高 prompt 缓存命中率（稳定 prompt、cache key 兼容） |
 | `@ff-labs/pi-fff` | FFF 驱动的模糊文件/内容搜索 |
+
+## `bin/hypa` shim（pi-hypa 必需，本仓库自带）
+
+pi-hypa 会把 `bash` 工具的命令改写为 `hypa -c '...'`（裸命令名），改写结果由 pi 原生 bash 工具执行。pi 每次 spawn shell 时会把 `~/.pi/agent/bin` 前置到 PATH，因此把 shim 放在该目录即可让裸 `hypa` 可解析，作用域仅限 pi，不污染系统 PATH。
+
+- 本仓库 `bin/hypa`（git-bash 用，POSIX sh）与 `bin/hypa.cmd`（cmd 用）均为**相对路径** shim，解析 `../npm/node_modules/@hypabolic/hypa-win32-x64/bin/hypa.exe`，两台机器通用，无需按设备修改。
+- 若 `pi update --extensions` 后 bash 工具报 `hypa: command not found`，先检查本目录 shim 是否存在、能否执行：`hypa --version`。
+- 注意 npm allow-scripts 警告可能跳过 `@hypabolic/pi-hypa` 的 postinstall（它只负责安装 `%LOCALAPPDATA%\Hypa\bin` 的用户级 shim），不影响本仓库 shim 的工作。
 
 ## 配置文件
 

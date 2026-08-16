@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+HERE="$(cd "$(dirname "$0")" && pwd)"
+exec "$HERE/../npm/node_modules/@hypabolic/hypa-win32-x64/bin/hypa.exe" "$@"
