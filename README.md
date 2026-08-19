@@ -34,7 +34,6 @@
 | `@juicesharp/rpiv-ask-user-question` | 结构化提问交互 |
 | `@hypabolic/pi-hypa` | 输出压缩（hypa_read/shell/grep 等） |
 | `context-mode` | 上下文节省 + FTS5 知识库（ctx_* 工具） |
-| `git:github.com/mattpocock/skills` | 方法论技能包（TDD、debugging、design 等） |
 | `statusline-pi` | 状态栏：git、花费、CPU/内存、上下文占用 |
 | `pi-markdown-preview` | Markdown 预览 |
 | `@cortexkit/pi-antigravity-auth` | Antigravity 认证 |
@@ -56,17 +55,18 @@
 
 | Skill 类型 | 唯一来源 | 本机加载位置 | 同步方式 |
 |---|---|---|---|
-| 个人自定义 skill | `Nescript/Pi-config` 仓库 | `~/.pi/agent/skills/` | 提交并推送该仓库 |
-| Matt Pocock 方法论 skill | `github.com/mattpocock/skills` | `~/.pi/agent/git/` | `settings.json` 里的 `git:github.com/mattpocock/skills@main` |
+| Pi 个人 skill | `Nescript/Pi-config` 仓库 | `~/.pi/agent/skills/` | 提交并推送该仓库 |
+| Codex 与 Pi 共享的 Matt Pocock skills | `github.com/mattpocock/skills` | `~/.agents/skills/` | `npx skills add mattpocock/skills -g -a codex -s '*' -y` |
 | npm 包附带的 skill | 对应 npm 包 | `~/.pi/agent/npm/` | `settings.json` 里的 `packages` |
 
 规则：
 
-1. 个人 skill 只放在 `~/.pi/agent/skills/`，不要复制到 `~/.agents/skills/`。
-2. 外部 Git 包里的 skill 只通过 `settings.json` 声明，不复制到个人 skill 目录。
-3. `~/.agents/skills/` 保持为空；它是其他 agent harness 的兼容入口，不是本配置的同步来源。
-4. `~/.pi/agent/git/`、`~/.pi/agent/npm/`、`sessions/`、`auth.json`、`trust.json` 都是本机状态，已通过 `.gitignore` 排除。
-5. 多平台迁移后运行审计：
+1. Pi 专用的个人 skill 放在 `~/.pi/agent/skills/`。
+2. 跨 Codex 与 Pi 共享的 skill 以 `~/.agents/skills/` 为唯一主副本；两个 harness 都会扫描该标准目录。
+3. 不要再通过 `pi install git:github.com/mattpocock/skills` 安装同一仓库，否则会与 `~/.agents/skills/` 产生 name collision。
+4. `npx skills` 创建的 Pi 兼容符号链接若指向 `~/.agents/skills/`，不会形成独立副本；Pi 0.84+ 不依赖这些链接。
+5. `~/.pi/agent/git/`、`~/.pi/agent/npm/`、`sessions/`、`auth.json`、`trust.json` 都是本机状态，已通过 `.gitignore` 排除。
+6. 多平台迁移后运行审计：
 
 ```bash
 node ~/.pi/agent/scripts/audit-skills.mjs

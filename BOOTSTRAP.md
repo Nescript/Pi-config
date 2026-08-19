@@ -29,19 +29,19 @@
 - [ ] 1. 将本仓库克隆/放置到 `~/.pi/agent`
 - [ ] 2. 写入下方「配置文件」一节中的各文件
 - [ ] 3. 逐条执行「插件安装」中的 `pi install` 命令
-- [ ] 4. 确认 `bin/hypa` shim 已就位（本仓库自带，随克隆到位；详见「`bin/hypa` shim」一节），否则 pi-hypa 改写后的 bash 命令会报 `hypa: command not found`
-- [ ] 5. 运行验证：`node ~/.pi/agent/scripts/audit-skills.mjs`，确认 `Name collisions: 0`
-- [ ] 6. 确认「维护规则」已写入 `~/.pi/agent/AGENTS.md`（内嵌模板已包含；若该文件已有自定义内容则追加而非覆盖）
-- [ ] 7. 阅读并遵守上方「维护规则」
-- [ ] 8. 提醒用户手动完成「需要人工处理」一节
+- [ ] 4. 按「Skill 清单」安装 Codex 与 Pi 共享的 Matt Pocock skills
+- [ ] 5. 确认 `bin/hypa` shim 已就位（本仓库自带，随克隆到位；详见「`bin/hypa` shim」一节），否则 pi-hypa 改写后的 bash 命令会报 `hypa: command not found`
+- [ ] 6. 运行验证：`node ~/.pi/agent/scripts/audit-skills.mjs`，确认 `Name collisions: 0`
+- [ ] 7. 确认「维护规则」已写入 `~/.pi/agent/AGENTS.md`（内嵌模板已包含；若该文件已有自定义内容则追加而非覆盖）
+- [ ] 8. 阅读并遵守上方「维护规则」
+- [ ] 9. 提醒用户手动完成「需要人工处理」一节
 
-## 插件安装（19 个包）
+## 插件安装（18 个包）
 
 ```bash
 pi install npm:pi-web-access
 pi install npm:pi-mcp-adapter
 pi install npm:@juicesharp/rpiv-ask-user-question
-pi install git:github.com/mattpocock/skills@main
 pi install npm:@hypabolic/pi-hypa
 pi install npm:context-mode
 pi install npm:statusline-pi
@@ -64,7 +64,6 @@ pi install npm:@ff-labs/pi-fff
 | `pi-web-access` | 网络搜索/抓取（web_search、fetch_content 等） |
 | `pi-mcp-adapter` | MCP 协议适配 |
 | `@juicesharp/rpiv-ask-user-question` | 结构化提问交互 |
-| `git:github.com/mattpocock/skills@main` | 35 个方法论 skill（TDD、debug、design 等） |
 | `@hypabolic/pi-hypa` | 输出压缩（hypa_read/shell/grep 等） |
 | `context-mode` | 上下文节省 + FTS5 知识库（ctx_* 工具） |
 | `statusline-pi` | 状态栏 |
@@ -108,7 +107,6 @@ pi-hypa 会把 `bash` 工具的命令改写为 `hypa -c '...'`（裸命令名）
     "npm:pi-web-access",
     "npm:pi-mcp-adapter",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "git:github.com/mattpocock/skills@main",
     "npm:@hypabolic/pi-hypa",
     "npm:context-mode",
     "npm:statusline-pi",
@@ -175,23 +173,29 @@ pi-hypa 会把 `bash` 工具的命令改写为 `hypa -c '...'`（裸命令名）
 
 ## Skill 清单（共 36 个）
 
-### 个人 skill（本仓库 `skills/`）
+### Pi 个人 skill（本仓库 `skills/`，1 个）
 
 | Skill | 用途 |
 |---|---|
 | `find-skills` | 发现并按需安装新的 agent skill |
 
-> 本机实际做法：`find-skills` 真实文件放在 `~/.agents/skills/find-skills`，`~/.pi/agent/skills/find-skills` 是指向它的符号链接（多个 agent 工具共享同一份）。新平台上直接从本仓库 `skills/` 复制到 `~/.pi/agent/skills/` 即可。
+`find-skills` 的真实文件位于 `~/.pi/agent/skills/find-skills`，随本仓库同步。
 
-新增个人 skill 时：将 skill 目录放入 `~/.pi/agent/skills/` 并同步到本仓库 `skills/`，按「维护规则」在此补充名称和用途。
+新增 Pi 专用 skill 时：将 skill 目录放入 `~/.pi/agent/skills/` 并同步到本仓库 `skills/`，按「维护规则」在此补充名称和用途。
 
-### 外部包（35 个，由 `pi install` 自动安装）
+### Codex 与 Pi 共享 skill（`~/.agents/skills/`，35 个）
 
-- `git:github.com/mattpocock/skills@main`（35 个）
+Matt Pocock 方法论 skills 以 `~/.agents/skills/` 为唯一主副本。Codex 使用该标准目录；Pi 0.84+ 也会原生扫描该目录，因此无需再用 `pi install git:github.com/mattpocock/skills` 安装第二份。
 
-由执行清单第 3 步的 `pi install` 自动安装到 `~/.pi/agent/git/`，**不要手动复制到任何 skills 目录**。
+```bash
+npx skills add mattpocock/skills -g -a codex -s '*' -y
+```
 
-**规则：`~/.agents/skills` 中除上述共享的 `find-skills` 外不要放其他 skill**，同名 skill 多来源会导致 collision。
+**去重规则：**
+
+- 保留 `~/.agents/skills/` 中的共享主副本，确保 Codex 和 Pi 都能使用。
+- 不要把同一套 skills 作为 Pi Git package 安装到 `~/.pi/agent/git/`，否则 Pi 启动时会产生 name collision。
+- `npx skills` 可能为 Pi 创建指向 `~/.agents/skills/` 的兼容符号链接；链接与目标是同一真实路径，Pi 会去重。链接不是必需的，可以只保留 `~/.agents/skills/` 主副本。
 
 ## 需要人工处理（agent 不可代劳）
 
